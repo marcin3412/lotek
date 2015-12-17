@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Totollotek API</title>
+
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script type="text/javascript" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		table table td{
+			border: 1px solid;
+			border-color: #ddd;
+		}
+		table table li{
+			color: 222;
+		}
+		td{
+			vertical-align: top;
+			text-align: top;
+		}
+		table table li{
+			color: #119;
+			font-weight: bolder;
+
+		}
+		body{
+			font-family: monospace;
+		}
+		h3{
+			color: purple;
+		}
+		content{
+			background-color: #eaeaea;
+			border-radius: 5px;
+			padding-right: 20px;
+		}
+		.done{
+			color: #22aa22;
+			font-weight: bolder;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<p class="navbar-brand" href="">Tottolotek API 28/11/1</p>
+	<ul class="nav navbar-nav">
+		<li>
+			<a href="#" id="1">Autoryzacja</a>
+		</li>
+		<li>
+			<a href="#" id="2">Zapytania</a>
+		</li>
+		<li>
+			<a href="#" id="3">Odpowiedzi</a>
+		</li>
+		<li>
+			<a href="#" id="4">Metody</a>
+		</li>
+	</ul>
+</nav>
+
+<div id="a">
+	<div class="page-header">
+	  <h1>Autoryzacja <small>czyli jak to wszystko dziala</small></h1>
+	</div>
+	<img src="auth.png" class="img-responsive" alt="Image">
+	<!DOCTYPE html>
+	<div class="container">
+		<ul>
+			<li>1. Klient wysyla zapytanie do serwera</li>
+			<li>2. Serwer sprawdza czy zapytanie wymaga autoryzacji.</li>
+			<li>3. Jezeli zapytanie wymaga autoryzacji sprawdza czy zapytanie zawiera autoryzacje. Jezeli nie to zwracany jest stosowny komunikat, jezeli tak wykonywana jest akcja.</li>
+			<li>4. Serwer wykonuje akcje.</li>
+			<li>5. Serwer zwraca dane.</li>
+		</ul>
+	</div>
+</div>
+
+<div id="b">
+<div class="page-header">
+  <h1>Zapytania<small> Jak tworzyc zapytania</small></h1>
+  <!DOCTYPE html>
+  <div class="container">
+  	<ul>
+  		<li>Zapytania w AJAX</li>
+  		<p>
+  			$.ajax({<br/>
+			url: '<b>adres:port/metoda</b>',<br/>
+			type: 'GET',<br/>
+			data: <b>dane</b>,<br/>
+			success: function(data){<br/>
+		 	 console.log(data);<br/>
+			}<br/>
+			});<br/>
+  		</p>
+  		<li>Adres aktualnie nie wiem jaki bedzie gdyz nie mamy serwera. Do testowania pewnie localhost:8080</li>
+  		<li>Dane -> <b>?name=value&name2=value2 </b> itd.</li>
+  		<li>Testowanie metody :D  adres:port/metoda?dane <b>np. localhost:8080/game/show?game_id=1 </b> </li>
+  	</ul>
+  </div>
+</div>
+</div>
+
+<div id="c">
+<div class="page-header">
+  <h1>Odpowiedz<small> Jak wyglada odpowiedz</small></h1>
+  <ul>
+  	<li>Odpowiedzi sa zawsze w formie JSON</li>
+  	<li>Wszystkie odpowiedzi wysylane sa razem z naglowkiem HTTP, a ich tresc zwracana jest w formacie JSON. Kazda akcja zawiera pole "status", ktore informuje o powodzeniu wykonania akcji. W przypadku prawidlowego wykonania akcji, pole zwraca wartosc "OK". W przypadku blednego wykonania akcji, pole "status" zwraca wartosc "ERROR". Do odpowiedzi moze zostac dolaczone dodatkowe pole "info" zawierajace informacje o zaistnialym problemie.</li>
+  </ul>
+</div>
+</div>
+
+<div id="d">
+	<div class="jumbotron">
+		<table style="width:100%">
+			<tr>
+				<td style="width:30%">
+					<div class="">
+						<h1>Lista Metod</h1>
+						
+						<b>account/</b>
+						<ul>
+								<li><a class="done" href="#" id="_register">register</a> Rejestracja konta</li>
+								<li><a class="done" href="#" id="_confirm">confirm</a> Potwierdzanie konta</li>
+								<li><a class="done" href="#" id="_login">login</a> Logowanie/Autoryzacja</li>
+								<li><a class="done" href="#" id="_logout">logout</a> Wylogowanie</li>
+								<li><a href="#" id="_revu_pass">revu_pass</a> Prosba o reset hasla</li>
+								<li><a href="#" id="_conf_pass">conf_pass</a> Resetowanie hasla</li>
+						</ul>
+
+
+						<b>user/</b>
+						<ul>
+								<li><a class="done" href="#" id="_about">about</a> Dane uzytkownika</li>
+								<li><a href="#" id="_edit">edit</a> Edycja danych uzytkownika</li>
+								<li><a href="#" id="_changePass">changePass</a> Zmiana hasla</li>
+								<li><a href="#" id="_changeEmail">changeEmail</a> Zmiana adresu email</li>
+						</ul>
+
+						<b>ticket/</b>
+						<ul>
+								<li><a href="#" id="_add">add</a> Utworzenie losu (tylko przed wybrana kumulacja)</li>
+								<li><a href="#" id="_modf">modf</a> Edycja losu (tylko przed kumulacja)</li>
+								<li><a href="#" id="_del">del</a> Usuwanie losu (tylko przed kumulacja)</li>
+								<li><a href="#" id="_show">show</a> Zwraca los</li>
+								<li><a href="#" id="_showAll">showAll</a> Zwraca liste losow </li>
+						</ul>
+
+						<b>game/</b>
+						<ul>
+								<li><a href="#" id="_next">next</a> Zwraca informacje na temat nablizszej kumulacji</li>
+								<li><a href="#" id="_last">last</a> Zwraca informacje na temat ostatniej kumulacji</li>
+								<li><a href="#" id="_list">list</a> Zwraca zapisane kumulacje</li>
+								<li><a href="#" id="_show">show</a> Zwraca informacje na temat wybranej kumulacji</li>
+						</ul>
+
+						<b>stat/</b>
+						<ul>
+								<li><a href="#" id="_top">top</a> zwraca topke z wybranego zestawienia</li>
+						</ul>
+
+						<b>server/</b>
+						<ul>
+							<li><a href="#" id="_stat">stat</a> zwraca informacje na temat stanu servera ON/OFF</li>
+						</ul>
+
+					</div>
+				</td>
+				<td>
+					<content id="register">
+						<h3>account/register</h3>
+						<p>Metoda sluzy do rejestracji nowego uzytkownika na serwerze.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>imie</li>
+									<li>nazwisko</li>
+									<li>haslo</li>
+									<li>email</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status - OK lub ERROR</li>
+									<li>msg - jezeli ERROR to dlaczego</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="confirm">
+						<h3>account/confirm</h3>
+						<p>Metoda sluzy do potwierdzania konta. Uzytkownik po prawidlowej rejestracji otrzymuje jednorazowy kod sluzacy do aktywacji jego konta na adres email. Ta metoda aktywuje konto</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>confirm_cod - kod aktywacyjny otrzymany w wiadomosci email.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status - OK lub ERROR</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="login">
+						<h3>account/login</h3>
+						<p>Metoda sluzaca do logowania sie do serwera. Uzytkownik otrzymuje kod autoryzacyjny, ktory nalezy umieszczac jako paramet w metodach wymagajacych autoryzacji.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>email</li>
+									<li>haslo</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status - OK lub ERROR</li>
+									<li>ssid - kod do autoryzacji metod, ktore tego wymagaja</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="logout">
+						<h3>account/logout</h3>
+						<p>Metoda sluzy do wylogowania uzytkownika.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid - kod autoryzacyjny uzytkownika</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status - OK lub ERROR</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="revu_pass">
+						<h3>account/rev_pass</h3>
+						<p>Metoda wysyla do uzytkownika kod do resetowania hasla na andres email. Parametry w tej metodzie mozna wysylac zamiennie.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>email</li>
+									<li>login</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status - OK lub ERROR</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="conf_pass">
+						<h3>account/conf_pass</h3>
+						<p>Metoda dzieki, ktorej uzytkownik moze zresetowac swoje haslo.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>confirm_cod</li>
+									<li>password</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status - OK lub ERROR</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="about">
+						<h3>user/about</h3>
+						<p>Metoda zwraca dane na temat uzytkownika.Jezeli uzytkownik jest inny niz wysylajacy pytanie wyswietlone zostanie tylko pole status i konto_od.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>email</li>
+									
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									<li>imie</li>
+									<li>nazwisko</li>
+									<li>email</li>
+									<li>konto_od</li>
+									<li>saldo</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="edit">
+						<h3>user/edit</h3>
+						<p>Metoda umozliwia zmiane danych uzytkownika.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>imie</li>
+									<li>nazwisko</li>
+									<li>wiek</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="changePass">
+						<h3>user/changePass</h3>
+						<p>Metoda do zmiany hasla.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>old</li>
+									<li>new</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="changeEmail">
+						<h3>user/changeEmail</h3>
+						<p>Metoda do zmiany adresu email.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>old</li>
+									<li>new</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="add">
+						<h3>ticket/add</h3>
+						<p>Metoda do tworzenia losow. Nalezy wprowadzic wszystkie liczby oraz id kumulacji. Najczestrze bledy to tworzenie losu do kumulacji, ktora juz sie odbyla.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>kumulacja_id</li>
+									<li>num1</li>
+									<li>num2</li>
+									<li>num3</li>
+									<li>num4</li>
+									<li>num5</li>
+									<li>num6</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="modf">
+						<h3>ticket/modf</h3>
+						<p>Metoda pozwala zmodyfikowac utworzony los.Jezeli kumulacja jeszcze sie nie odbyla.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>kumulacja_id</li>
+									<li>num1</li>
+									<li>num2</li>
+									<li>num3</li>
+									<li>num4</li>
+									<li>num5</li>
+									<li>num6</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="del">
+						<h3>ticket/del</h3>
+						<p>Metoda do kasowania losu.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>ticket_id<li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="show">
+						<h3>ticket/show</h3>
+						<p>Pokazuje dane na temat wybranego losu.</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>ssid</li>
+									<li>ticket_id</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>show</li>
+									<li>kumulacja_id</li>
+									<li>num1</li>
+									<li>num2</li>
+									<li>num3</li>
+									<li>num4</li>
+									<li>num5</li>
+									<li>num6</li>
+									<li>win - czy wygrany</li>
+									<li>create_at</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="showAll">
+						<h3>ticket/showAll</h3>
+						<p>Metoda zwraca liste losow</p>
+						<table>
+							<tr>
+								<td>Parametry:</td>
+								<td>
+									<ul>
+									<li>login</li>
+									<li>user_id</li>
+									<li>limit - maksymalna ilosc wyswietlonych losow</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>status</li>
+									LISTA[JSONArray]:
+									<li>ticket_id</li>
+									<li>win - czy wygrany</li>
+									<li>kumulacja_id</li>
+									<li>create_at</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+					<content id="next">
+						<h3>ticket/</h3>
+						<p>Metoda zwraca dane na temat kumulacji, ktora odbedzie sie jako kolejna</p>
+						<table>
+							<tr>
+								<td>Parametry:[BRAK]</td>
+								<td>
+									<ul>
+									<li></li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Odpowiedz:</td>
+								<td>
+									<ul>
+									<li>kumulacja_id</li>
+									<li>pula - wygrana z danej kumulacji</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</content>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('#a').hide('slow');
+	$('#b').hide('slow');
+	$('#c').hide('slow');
+	$('content').hide('fast');
+
+	$('#_register').click(function(event) {$('content').hide('fast');
+		$('#register').show('fast');});
+	$('#_confirm').click(function(event) {$('content').hide('fast');
+		$('#confirm').show('fast');});
+	$('#_login').click(function(event) {$('content').hide('fast');
+		$('#login').show('fast');});	
+	$('#_logout').click(function(event) {$('content').hide('fast');
+		$('#logout').show('fast');});
+	$('#_revu_pass').click(function(event) {$('content').hide('fast');
+		$('#revu_pass').show('fast');});
+	$('#_conf_pass').click(function(event) {$('content').hide('fast');
+		$('#conf_pass').show('fast');});
+	$('#_about').click(function(event) {$('content').hide('fast');
+		$('#about').show('fast');});
+	$('#_edit').click(function(event) {$('content').hide('fast');
+		$('#edit').show('fast');});
+	$('#_changePass').click(function(event) {$('content').hide('fast');
+		$('#changePass').show('fast');});
+	$('#_changeEmail').click(function(event) {$('content').hide('fast');
+		$('#changeEmail').show('fast');});
+	$('#_add').click(function(event) {$('content').hide('fast');
+		$('#add').show('fast');});
+	$('#_modf').click(function(event) {$('content').hide('fast');
+		$('#modf').show('fast');});
+	$('#_del').click(function(event) {$('content').hide('fast');
+		$('#del').show('fast');});
+	$('#_show').click(function(event) {$('content').hide('fast');
+		$('#show').show('fast');});
+	$('#_showAll').click(function(event) {$('content').hide('fast');
+		$('#showAll').show('fast');});
+
+
+	$('#1').click(function(event) {
+		/* Act on the event */
+
+		$('#a').show('slow');
+		$('#b').hide('slow');
+		$('#c').hide('slow');
+		$('#d').hide('slow');
+	});
+
+	$('#2').click(function(event) {
+		/* Act on the event */
+
+		$('#a').hide('slow');
+		$('#b').show('slow');
+		$('#c').hide('slow');
+		$('#d').hide('slow');
+	});
+
+	$('#3').click(function(event) {
+		/* Act on the event */
+
+		$('#a').hide('slow');
+		$('#b').hide('slow');
+		$('#c').show('slow');
+		$('#d').hide('slow');
+	});
+
+	$('#4').click(function(event) {
+		/* Act on the event */
+
+		$('#a').hide('slow');
+		$('#b').hide('slow');
+		$('#c').hide('slow');
+		$('#d').show('slow');
+	});
+});
+</script>
+
+</body>
+</html>
