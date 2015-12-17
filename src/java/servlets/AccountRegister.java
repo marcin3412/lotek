@@ -86,6 +86,7 @@ public class AccountRegister extends HttpServlet {
                     jr.setMsg("Uzytkownik dodany do bazy");
                     jr.setStatus(true);
                     out.print(jr.Flush(null));
+                    db.Close();
                 }
                 else{
                     jr.setMsg("Uzytkownik o takim emailu juz istnieje.");

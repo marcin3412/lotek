@@ -58,6 +58,7 @@ public class AccountConfirm extends HttpServlet {
                     jr.setMsg("Aktywowano konto");
                     jr.setStatus(true);
                     out.println(jr.Flush(null));
+                    db.Close();
                 }   
                 
                 else{

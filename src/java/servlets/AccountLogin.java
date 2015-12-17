@@ -12,12 +12,10 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import object.Database;
 import object.JsonRespone;
 import org.json.JSONException;
@@ -72,10 +70,7 @@ public class AccountLogin extends HttpServlet {
                 if(rs.getInt(1) == 1){
                     JSONObject ssid = new JSONObject();
                     String session_cod = md5.Code(new Date().toString() + password+email );
-                    
-                   //ServletContext application = getServletConfig().getServletContext();
-                   
-                   //application.setAttribute(session_cod, email);
+
                    System.setProperty(session_cod, email);
                     
                     jr.setStatus(true);
@@ -88,6 +83,7 @@ public class AccountLogin extends HttpServlet {
                 jr.setStatus(false);
                 out.print(jr.Flush(null)); 
                 }
+                db.Close();
             } 
         } catch (SQLException ex) {
             Logger.getLogger(AccountLogin.class.getName()).log(Level.SEVERE, null, ex);

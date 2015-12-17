@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -11,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +59,6 @@ public class UserAbout extends HttpServlet {
                 System.out.println(System.getProperty(ssid));
                 //ServletContext application = getServletConfig().getServletContext();
                 if(System.getProperty(ssid) == null){
-                    //System.out.println(application.getAttribute(ssid));
                     jr.setMsg("Nie zalogowany");
                     jr.setStatus(false);
                     out.println(jr.Flush(null));
@@ -73,7 +66,7 @@ public class UserAbout extends HttpServlet {
                 }
                 else
                 if(!email.equals(System.getProperty(ssid))){
-                   jr.setMsg("Wystapil nie oczekiwany blad sessji.");
+                   jr.setMsg("Dostęp do danych innego użytkownika niż zalogowany jest zabroniony.");
                    jr.setStatus(false);
                 }
                 else{
@@ -88,6 +81,7 @@ public class UserAbout extends HttpServlet {
                    data.put("konto_od", rs.getString("create_at"));
                    jr.setStatus(true);
                    out.println(jr.Flush(data));
+                   db.Close();
                 }
             }
         } catch (SQLException ex) {
