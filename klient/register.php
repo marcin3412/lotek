@@ -1,24 +1,19 @@
 <html>
-		<!--
-    	SEKCJA INCLUDE
-    	-->
+	
     <head> 	
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" >
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/rejestruj.js"></script>
     </head>
-    	<!--
-		KONIEC SEKCJI INCLUDE
-		-->
-
+  
     <body>
-    	<!-----------
-    		SEKCJA TOPMENU
-    	------------>
+     
+  
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+   
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -66,25 +61,15 @@
     </div>
   </div>
 </nav>
-		<!-----------
-			KONIEC SEKCJI TOPMENU
-		------------>
+		
 
 
-		<!-----------
-			SEKCJA CONTENTU
-		------------>
 
-<div id="content">
-  <!--
-  PANEL LOGOWANIA
-  -->
-
-<form id="rejestracja" class="container" action="potwierdzenie.php">
+<form id="rejestracja" class="container">
   <div class="form-group">
     <label class="col-sm-2 control-label">Imię</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="Imię">
+      <input type="text" class="form-control" name="imie" placeholder="Imię">
     </div>
   </div>
   <div class="form-group">
@@ -96,27 +81,16 @@
   <div class="form-group">
     <label  class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" name="email" placeholder="Email">
-    </div>
-  </div>
-  <div class="form-group">
-    <label  class="col-sm-2 control-label">Powtórz Email</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="reemail" placeholder="Powtórz Email">
+      <input type="text" class="form-control" name="email" placeholder="Email">
     </div>
   </div>
   <div class="form-group">
     <label  class="col-sm-2 control-label">Hasło</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" name="password" placeholder="Hasło">
+      <input type="text" class="form-control" name="haslo" placeholder="Hasło">
     </div>
   </div>
-  <div class="form-group">
-    <label  class="col-sm-2 control-label">Powtórz Hasło</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" name="repassword" placeholder="Powtórz Hasło">
-    </div>
-  </div>
+  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">
@@ -128,16 +102,13 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Zarejestruj</button>
+      <input type="button" class="btn btn-default" value="Zarejestruj" name="rejestracja" />
     </div>
   </div>
+ 
 </form> 
-</div>
 
 
-		<!-----------
-			KONIEC SEKCJI CONTENTU
-		------------>
 
 
 </body>
