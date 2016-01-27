@@ -2,6 +2,8 @@
 	
 <head>  
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" >
+      	<script src="js/developer.js"></script>
+    	<script src="js/rejestruj.js"></script>
     <?php
       include 'incl/bootstrap.php';
     ?>
