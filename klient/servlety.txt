@@ -1,0 +1,13 @@
+LISTA DZIA£AJ¥CYCH SERVLETÓW:
+
+account:
+register 	bez zmian
+login		bez zmian
+logout
+
+user:
+about		bez zmian
+edit		bez zmian
+
+ticket:
+add		dodatkowy parametr-> email , email zalogowanej osoby
