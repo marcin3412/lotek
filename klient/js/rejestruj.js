@@ -1,7 +1,7 @@
 $(document).ready(function(){
 var form = $('#rejestracja').closest('form');
 
-alert('skrypt zaladowany i chuj');
+
 
 	form.find('input[name=rejestracja]').click(function(event) {
 	
