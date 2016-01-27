@@ -39,6 +39,7 @@ public class AccountRegister extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("CORS","Access-Control-Allow-Origin");
         try (PrintWriter out = response.getWriter()) {
             String imie = null;
             String nazwisko = null;
@@ -47,7 +48,8 @@ public class AccountRegister extends HttpServlet {
             JsonRespone jr = new JsonRespone();
             
             jr.setStatus(true);
-            
+            if(request.getParameter("callback") != null)
+                jr.callback = request.getParameter("callback");
             if(request.getParameter("imie") != null)
                 imie = request.getParameter("imie");
             else

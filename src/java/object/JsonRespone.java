@@ -16,6 +16,7 @@ import org.json.JSONObject;
  */
 public class JsonRespone {
     JSONObject resp = new JSONObject();
+    public String callback = "callback";
     
   public void setStatus(boolean flag){
       if(flag)
@@ -40,14 +41,14 @@ public class JsonRespone {
         }
   }
   
-  public JSONObject Flush(JSONObject data){
+  public String Flush(JSONObject data){
         try {
             resp.put("data", data);
         } catch (JSONException ex) {
             Logger.getLogger(JsonRespone.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return resp;
+        return this.callback+"("+resp+")";
   }
   
   public boolean isError(){
