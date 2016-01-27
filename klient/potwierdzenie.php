@@ -76,7 +76,7 @@
 		------------>
 
 
-  <form id="potwierdzenie" class="container" action="potwierdzenie.php">
+  <form id="potwierdzenie" class="container">
   <div class="form-group">
     <label class="col-sm-2 control-label">Klucz Aktywacyjny</label>
     <div class="col-sm-10">
