@@ -92,6 +92,10 @@
 </form> 
 </div>
 
+<?php
 
+include 'incl/footer.php';
+
+?>
     </body>
 </html>

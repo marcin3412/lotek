@@ -69,6 +69,10 @@
 		<!-----------
 			KONIEC SEKCJI TOPMENU
 		------------>
+<?php
 
+include 'incl/footer.php';
+
+?>
     </body>
 </html>

@@ -119,7 +119,11 @@ include 'config.php';
 		<!-----------
 			KONIEC SEKCJI CONTENTU
 		------------>
+<?php
 
+include 'incl/footer.php';
+
+?>
 
 </body>
 </html>
